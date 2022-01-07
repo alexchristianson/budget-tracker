@@ -4,7 +4,7 @@ let db;
 
 const request = indexedDB.open("budget_db", 1);
 
-request.onsuccess = (target) => {
+request.onsuccess = ({target}) => {
     db = target.result;
     console.log(db);
     if (navigator.onLine) {
@@ -12,7 +12,7 @@ request.onsuccess = (target) => {
     }
 };
 
-request.onupgradeneeded = (target) => {
+request.onupgradeneeded = ({target}) => {
     let db = target.result;
     db.createObjectStore("Pending", {
         autoIncrement: true
