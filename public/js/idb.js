@@ -1,4 +1,4 @@
-const indexedDB = window.indexedDB || window.mozindexedDB || window.msindexedDB;
+const indexedDB = window.indexedDB || window.mozIndexedDB || window.msIndexedDB;
 
 let db;
 
@@ -28,3 +28,31 @@ function saveRecord (record) {
     const store = transaction.objectStore("Pending");
     store.add(record);
 };
+
+function checkDatabase () {
+    const transaction = db.transaction([ "Pending" ], "readwrite");
+    const store = transaction.objectStore("Pending");
+
+    const getAll = store.getAll();
+    getAll.onsuccess = () => {
+        if (getAll.result.length > 0) {
+            fetch("/api/transaction/bulk", {
+                method: "POST",
+                body: JSON.stringify(getAll.result),
+                headers: {
+                    Accept: "application/json, text/plain, */*", 
+                    "Content-Type": "application/json"
+                }
+            }).then(response => {
+                return response.json();
+            }).then(() => {
+                const transaction = db.transaction([ "Pending" ], "readwrite");
+                const store = transaction.objectStore("Pending");
+
+                store.clear();
+            })
+        }
+    }
+};
+
+window.addEventListener("online", checkDatabase);
