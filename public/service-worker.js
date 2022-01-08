@@ -1,5 +1,5 @@
-let siteCache = "site-cache-v2";
-let dataCache = "data-cache-v2";
+let siteCache = "site-cache-v3";
+let dataCache = "data-cache-v3";
 
 const cacheURL = [
     "./js/idb.js",
