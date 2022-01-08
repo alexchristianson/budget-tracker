@@ -2,11 +2,11 @@ let siteCache = "site-cache-v1";
 let dataCache = "data-cache-v1";
 
 const cacheURL = [
-    "/js/idb.js",
-    "/js/index.js",
-    "/manifest.json",
-    "/css/style.css",
-    "/"
+    "./js/idb.js",
+    "./js/index.js",
+    "./manifest.json",
+    "./css/styles.css",
+    "./index.html"
 ]
 
 self.addEventListener('install', function(evt) {
