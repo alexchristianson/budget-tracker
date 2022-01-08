@@ -22,6 +22,7 @@ fetch("/api/transaction")
     if (Array.isArray(transactions)) {
         transactions = data;
     }
+    console.log("this is 3", transactions);
 
 
     populateTotal();
