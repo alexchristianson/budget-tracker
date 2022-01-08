@@ -1,5 +1,5 @@
-let siteCache = "site-cache-v3";
-let dataCache = "data-cache-v3";
+let siteCache = "site-cache-v4";
+let dataCache = "data-cache-v4";
 
 const cacheURL = [
     "./js/idb.js",
@@ -28,6 +28,7 @@ self.addEventListener('fetch', function(evt) {
             .then(cache => {
                 return fetch(evt.request)
                 .then(response => {
+                    console.log("Response", response);
                     // if the response was good, clone it and store it in the cache
                     if (response.status === 200) {
                         cache.put(evt.request.url, response.clone());
