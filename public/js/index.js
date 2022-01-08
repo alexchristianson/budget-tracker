@@ -19,7 +19,10 @@ fetch("/api/transaction")
   .then(data => {
     console.log("this is 1", transactions);
     // save db data on global variable
-    transactions = data;
+    if (Array.isArray(transactions)) {
+        transactions = data;
+    }
+
 
     populateTotal();
     populateTable();
