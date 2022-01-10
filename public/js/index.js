@@ -17,13 +17,10 @@ fetch("/api/transaction")
     return response.json();
   })
   .then(data => {
-    console.log("this is 1", transactions);
     // save db data on global variable
     if (Array.isArray(data)) {
         transactions = data;
     }
-    console.log("this is 3", transactions);
-
 
     populateTotal();
     populateTable();
@@ -31,7 +28,6 @@ fetch("/api/transaction")
   });
 
 function populateTotal() {
-  console.log("this is 2", transactions);
   // reduce transaction amounts to a single total value
   let total = transactions.reduce((total, t) => {
     return total + parseInt(t.value);
